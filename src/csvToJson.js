@@ -42,11 +42,11 @@ class CsvToJson {
   csvToJson(parsedCsv) {
     let lines = parsedCsv.split(newLine);
     let fieldDelimiter = this.getFieldDelimiter();
-    let headers = lines[0].split(fieldDelimiter);
+    let headers = lines[0].match(fieldDelimiter);
 
     let jsonResult = [];
     for (let i = 1; i < lines.length; i++) {
-      let currentLine = lines[i].split(fieldDelimiter);
+      let currentLine = lines[i].match(fieldDelimiter);
       if (stringUtils.hasContent(currentLine)) {
         jsonResult.push(this.buildJsonResult(headers, currentLine));
       }
